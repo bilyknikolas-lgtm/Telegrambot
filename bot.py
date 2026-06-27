@@ -22,8 +22,7 @@ def get_video(message):
 
     name = user_name.get(chat_id, "неизвестно")
 
-    bot.send_message(chat_id, f" Видео отправлено\nИмя: {name}")
+    bot.send_message(chat_id, "Видео отправлено\nИмя: " + name)
 
-# 🔥 ОБЯЗАТЕЛЬНО В КОНЦЕ
 if __name__ == "__main__":
     bot.infinity_polling()
