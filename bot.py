@@ -5,7 +5,7 @@ from email.mime.text import MIMEText
 TOKEN = "7631628545:AAFnesbnhVHiS04_vZwy9oTEOrtoy1NbFpE"
 
 EMAIL = "bilyknikolas@gmail.com"
-APP_PASSWORD = "YOUR_APP_PASSWORD"
+APP_PASSWORD = "uvso mkoj pntl zttc"
 
 bot = telebot.TeleBot(TOKEN)
 
