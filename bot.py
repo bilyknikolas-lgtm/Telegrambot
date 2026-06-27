@@ -2,10 +2,10 @@ import telebot
 import smtplib
 from email.mime.text import MIMEText
 
-TOKEN = "7631628545:AAFS978oXDfE6R8e8gj7aOGf4tRzOx94gqg"
+TOKEN = "7631628545:AAH7d9hIx4-9kEQCNpSy-gNL_A1OIDv-d2g"
 
 EMAIL = "bilyknikolas@gmail.com"
-APP_PASSWORD = "ggme nqte bjee xvnm"
+APP_PASSWORD = "cere ldqd teka orja"
 
 bot = telebot.TeleBot(TOKEN)
 
@@ -31,9 +31,11 @@ def send_email(name, file_id):
         print("EMAIL ERROR:", e)
         return False
 
+
 @bot.message_handler(commands=['start'])
 def start(message):
     bot.send_message(message.chat.id, "Здравствуйте. Введите имя")
+
 
 @bot.message_handler(content_types=['text'])
 def get_name(message):
@@ -41,12 +43,19 @@ def get_name(message):
     user_name[chat_id] = message.text
     bot.send_message(chat_id, "Теперь отправьте видео")
 
-@bot.message_handler(content_types=['video'])
+
+# 🔥 ЛОВИМ И ВИДЕО И ФАЙЛЫ
+@bot.message_handler(content_types=['video', 'document'])
 def get_video(message):
     chat_id = message.chat.id
     name = user_name.get(chat_id, "неизвестно")
 
-    file_id = message.video.file_id
+    file_id = None
+
+    if message.content_type == 'video':
+        file_id = message.video.file_id
+    else:
+        file_id = message.document.file_id
 
     success = send_email(name, file_id)
 
@@ -54,5 +63,6 @@ def get_video(message):
         bot.send_message(chat_id, "✔ Отправлено")
     else:
         bot.send_message(chat_id, "❌ Ошибка отправки")
+
 
 bot.infinity_polling()
