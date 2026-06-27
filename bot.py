@@ -2,10 +2,10 @@ import telebot
 import smtplib
 from email.mime.text import MIMEText
 
-TOKEN = "7631628545:AAFnesbnhVHiS04_vZwy9oTEOrtoy1NbFpE"
+TOKEN = "YOUR_NEW_TOKEN"
 
 EMAIL = "bilyknikolas@gmail.com"
-APP_PASSWORD = "uvso mkoj pntl zttc"
+APP_PASSWORD = "YOUR_NEW_APP_PASSWORD"
 
 bot = telebot.TeleBot(TOKEN)
 
@@ -48,19 +48,14 @@ def get_video(message):
     chat_id = message.chat.id
     name = user_name.get(chat_id, "неизвестно")
 
-    file_id = None
-
-    if message.content_type == "video":
-        file_id = message.video.file_id
-    else:
-        file_id = message.document.file_id
+    file_id = message.video.file_id if message.content_type == "video" else message.document.file_id
 
     success = send_email(name, file_id)
 
     if success:
         bot.send_message(chat_id, "Видео отправлено")
     else:
-       э bot.send_message(chat_id, "Ошибка отправки")
+        bot.send_message(chat_id, "Ошибка отправки")
 
 
 if __name__ == "__main__":
