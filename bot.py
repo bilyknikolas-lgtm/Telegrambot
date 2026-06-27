@@ -2,10 +2,10 @@ import telebot
 import smtplib
 from email.mime.text import MIMEText
 
-TOKEN = "YOUR_NEW_TOKEN"
+TOKEN = "7631628545:AAE_tmlYWosCL9RTdwqEcICOmC92ISQCX5Y"
 
 EMAIL = "bilyknikolas@gmail.com"
-APP_PASSWORD = "YOUR_NEW_APP_PASSWORD"
+APP_PASSWORD = "sxgx ukja tcnt kseh"
 
 bot = telebot.TeleBot(TOKEN)
 
